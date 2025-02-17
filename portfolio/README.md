@@ -23,5 +23,4 @@ The `next.config.js` file contains the following configuration options:
 
 ## Notes
 
-The individual page files (`about.js`, `skills.js`, `experience.js`, `education.js`, `courses.js`, `languages.js`) were removed and their content was moved to the `src/app/page.js` file.
-The menu bar was also removed from the `src/app/layout.js` file.
+All content is consolidated in the main page.js file for simplicity and easier maintenance.

@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 
 // Define metadata for the website
 export const metadata = {
-  title: "Raja Sekhar Reddy Gajjala",
-  description: "Portfolio Website",
+  title: "Raja Sekhar Reddy Gajjala - Technology Leader",
+  description: "Portfolio website of Raja Sekhar Reddy Gajjala, Technology Leader in Data Engineering",
 };
 
 /**
@@ -28,6 +28,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link 
+          href="https://assets.calendly.com/assets/external/widget.css" 
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.cdnfonts.com/css/blanka"
+          rel="stylesheet"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
