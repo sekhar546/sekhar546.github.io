@@ -25,6 +25,12 @@ jobs:
       - name: Export project
         run: set -x; npm run next export --prefix portfolio
 
+      - name: Upload logs as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-logs
+          path: .
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
