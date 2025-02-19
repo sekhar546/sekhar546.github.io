@@ -8,11 +8,13 @@ import Footer from '../components/Footer'
 const Home = () => {
   return (
     <div className={styles.container}>
+      {/* Header section containing name and job title */}
       <header className={styles.header}>
         <h1 className={styles.name}>Raja Sekhar Reddy Gajjala</h1>
         <p className={styles.jobTitle}>Technology Leader - Data Engineering</p>
       </header>
       
+      {/* About Me section with profile summary */}
       <section className={styles.section}>
         <h1>About Me</h1>
         <p className={styles.profileSummary}>
@@ -32,7 +34,7 @@ const Home = () => {
         </p>
       </section>
 
-      {/* Skills */}
+      {/* Skills section */}
       <h1>Skills</h1>
       <ul>
         <li>AWS (EMR, EC2, Lambda, Glue, S3, RedShift, Athena, Step-Functions, SNS)</li>
@@ -47,7 +49,7 @@ const Home = () => {
         <li>SAP Crystal Reports</li>
       </ul>
 
-      {/* Experience */}
+      {/* Experience section */}
       <h1>Experience</h1>
       <h2>Technology Leader - Data Engineering</h2>
       <p>ValueMomentum (November 2020 - June 2024)</p>
@@ -62,7 +64,7 @@ const Home = () => {
         <li>Developed and delivered customized training programs on Spark memory optimization, AWS Glue, and Talend ETL, equipping the team with advanced skills to tackle complex data engineering challenges.</li>
         <li>Championed knowledge-sharing initiatives by conducting workshops on data architecture design and performance tuning, resulting in a 30% improvement in team productivity.</li>
         <li>Built a collaborative learning environment by guiding team members through real-world use cases, enabling them to master Lambda functions, EMR clusters, and SnowFlake integrations.</li>
-        <li>Led code version control initiatives by managing the team's codebase in GitLab, implementing a streamlined branching strategy to reduce merge conflicts and save significant time for the DevOps team.</li>
+        <li>Led code version control initiatives by managing the team&apos;s codebase in GitLab, implementing a streamlined branching strategy to reduce merge conflicts and save significant time for the DevOps team.</li>
         <li>Introduced and mentored the team on using graphical tools for version control (e.g., VSCode with Git extensions), establishing it as a standard practice and improving team efficiency.</li>
         <li>Reviewed and approved merge requests for code developed by the team, ensuring high-quality deliverables and adherence to best practices in version control.</li>
       </ul>
@@ -92,7 +94,7 @@ const Home = () => {
         <li>Deployed onshore in the U.S. for two years, collaborating directly with clients to deliver clinical data reporting projects, ensuring alignment with business needs and fostering strong client relationships.</li>
         <li>Mentored and trained newcomers on SAP Crystal Reports, Power BI, and Talend ETL, fostering a culture of knowledge-sharing and skill development within the team.</li>
         <li>Optimized reporting workflows by automating data extraction, transformation, and loading (ETL) processes, reducing report generation time by 30% and improving data accuracy.</li>
-        <li>Played a key role in strategic initiatives by providing data-driven insights that supported the launch of new healthcare products, contributing to the company's growth and competitive edge.</li>
+        <li>Played a key role in strategic initiatives by providing data-driven insights that supported the launch of new healthcare products, contributing to the company&apos;s growth and competitive edge.</li>
       </ul>
 
       {/* Education */}
@@ -117,6 +119,7 @@ const Home = () => {
         <li>Hindi</li>
       </ul>
 
+      {/* Footer */}
       <Footer />
     </div>
   );
