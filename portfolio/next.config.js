@@ -4,6 +4,8 @@ const nextConfig = {
   reactStrictMode: true,
   // Define the file extensions that should be considered as pages
   pageExtensions: ['js', 'jsx', 'mdx'],
+  output: 'export',
+  distDir: 'out',
 }
 
 module.exports = nextConfig
