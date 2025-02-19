@@ -17,13 +17,13 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install --prefix portfolio
+        run: set -x; npm install --prefix portfolio
 
       - name: Build project
-        run: npm run build --prefix portfolio
+        run: set -x; npm run build --prefix portfolio
 
       - name: Export project
-        run: npm run next export --prefix portfolio
+        run: set -x; npm run next export --prefix portfolio
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
