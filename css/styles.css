@@ -367,50 +367,93 @@ img {
 /* =============== EXPERIENCE =============== */
 .experience__container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+    justify-content: center;
 }
 
 .experience__content {
-    background-color: var(--container-color);
-    padding: 1.5rem;
-    border-radius: 1rem;
-    width: 100%;
-    max-width: 500px;
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    column-gap: 1.5rem;
 }
 
 .experience__data {
     display: flex;
-    /* For alignment */
-    align-items: center;
-    margin-bottom: var(--mb-1-5);
+    flex-direction: column;
+    position: relative;
+    padding-left: 1.5rem;
     border-left: 2px solid var(--first-color);
-    padding-left: 1rem;
+    /* The Line */
+    margin-left: 1rem;
 }
 
-.experience__data:last-child {
+.experience__content {
+    /* Override grid for the vertical stack approach inside one column */
+    display: flex;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+.experience__content:last-child {
     margin-bottom: 0;
 }
 
+.experience__time {
+    position: absolute;
+    left: -2.05rem;
+    /* Adjust based on padding/border to center dot on line */
+    /* top: 0; Align with title */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.experience__rounder {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    background-color: var(--first-color);
+    border-radius: 50%;
+    border: 2px solid var(--container-color);
+    /* Visual gap */
+    z-index: 10;
+}
+
+.experience__line {
+    /* Using main border instead */
+    display: none;
+}
+
+.experience__data-bd {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
 .experience__title {
-    font-size: var(--normal-font-size);
+    font-size: var(--h3-font-size);
     font-weight: var(--font-medium);
 }
 
-.experience__subtitle {
-    display: inline-block;
+.experience__company {
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-semibold);
+    color: var(--first-color);
+}
+
+.experience__location {
     font-size: var(--small-font-size);
-    margin-bottom: var(--mb-0-5);
     color: var(--text-color-light);
 }
 
+.experience__location i {
+    font-size: .8rem;
+    margin-right: .25rem;
+}
+
 .experience__calendar {
-    font-size: var(--smaller-font-size);
+    font-size: var(--small-font-size);
     color: var(--text-color-light);
-    display: flex;
-    align-items: center;
-    gap: .25rem;
+    margin-top: .25rem;
 }
 
 /* =============== PROJECTS =============== */
@@ -440,6 +483,26 @@ img {
 .project__description {
     font-size: var(--small-font-size);
     margin-bottom: var(--mb-1);
+}
+
+.project__list {
+    text-align: left;
+    margin-bottom: var(--mb-1);
+}
+
+.project__list li {
+    font-size: var(--small-font-size);
+    margin-bottom: .5rem;
+    display: flex;
+    gap: .5rem;
+    align-items: flex-start;
+    color: var(--text-color);
+}
+
+.project__list li i {
+    color: var(--first-color);
+    margin-top: .2rem;
+    font-size: .8rem;
 }
 
 .project__tags {
