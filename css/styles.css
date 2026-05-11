@@ -179,6 +179,7 @@ img {
     z-index: var(--z-fixed);
     background-color: rgba(29, 27, 49, 0.85);
     /* Slightly transparent matches body hue */
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     box-shadow: 0 1px 4px rgba(0, 0, 0, .15);
 }
@@ -327,6 +328,45 @@ img {
     margin-bottom: var(--mb-2);
 }
 
+.home__name {
+    color: var(--first-color);
+}
+
+.home__typing {
+    color: var(--first-color);
+}
+
+.typing-cursor {
+    color: var(--first-color);
+    animation: blink .7s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.home__img-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home__img-container {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--first-color);
+    box-shadow: 0 0 0 8px hsla(var(--hue), 66%, 55%, .15);
+}
+
+.home__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
 /* =============== ABOUT =============== */
 .about__container {
     gap: 2.5rem;
@@ -359,6 +399,17 @@ img {
     text-align: center;
 }
 
+.about__img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 4px solid var(--first-color);
+    box-shadow: 0 0 0 8px hsla(var(--hue), 66%, 55%, .15);
+    justify-self: center;
+}
+
 .about__buttons {
     display: flex;
     justify-content: center;
@@ -368,12 +419,6 @@ img {
 .experience__container {
     display: flex;
     justify-content: center;
-}
-
-.experience__content {
-    display: grid;
-    grid-template-columns: 1fr max-content 1fr;
-    column-gap: 1.5rem;
 }
 
 .experience__data {
@@ -387,7 +432,6 @@ img {
 }
 
 .experience__content {
-    /* Override grid for the vertical stack approach inside one column */
     display: flex;
     margin-bottom: 2.5rem;
     position: relative;
@@ -456,7 +500,154 @@ img {
     margin-top: .25rem;
 }
 
+/* Experience card detail styles */
+.experience__header {
+    display: flex;
+    align-items: baseline;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+
+.experience__tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    margin-top: .5rem;
+}
+
+.tech-badge {
+    font-size: var(--smaller-font-size);
+    background-color: hsla(var(--hue), 66%, 55%, .15);
+    color: var(--first-color);
+    padding: .2rem .55rem;
+    border-radius: 2rem;
+    border: 1px solid hsla(var(--hue), 66%, 55%, .3);
+}
+
+.experience__details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease;
+}
+
+.experience__card.experience__expanded .experience__details {
+    max-height: 400px;
+}
+
+.experience__achievements {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-top: .75rem;
+    padding-left: .25rem;
+}
+
+.experience__achievements li {
+    font-size: var(--small-font-size);
+    display: flex;
+    gap: .5rem;
+    align-items: flex-start;
+    color: var(--text-color);
+}
+
+.experience__achievements li i {
+    color: var(--first-color);
+    font-size: .7rem;
+    margin-top: .3rem;
+    flex-shrink: 0;
+}
+
+.experience__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    margin-top: .75rem;
+    background: none;
+    border: none;
+    color: var(--first-color);
+    font-size: var(--small-font-size);
+    font-family: var(--body-font);
+    cursor: pointer;
+    padding: 0;
+}
+
+.experience__toggle i {
+    font-size: .75rem;
+    transition: transform .3s;
+}
+
 /* =============== PROJECTS =============== */
+.projects__filters {
+    display: flex;
+    justify-content: center;
+    gap: .75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    padding: .4rem 1.1rem;
+    border-radius: 2rem;
+    border: 1px solid var(--first-color);
+    background: none;
+    color: var(--first-color);
+    font-size: var(--small-font-size);
+    font-family: var(--body-font);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--first-color);
+    color: #fff;
+}
+
+.project__card.project__hidden {
+    display: none;
+}
+
+.project__card-header {
+    margin-bottom: .75rem;
+}
+
+.project__category-badge {
+    display: inline-block;
+    font-size: var(--smaller-font-size);
+    background-color: hsla(var(--hue), 66%, 55%, .15);
+    color: var(--first-color);
+    padding: .2rem .65rem;
+    border-radius: 2rem;
+    border: 1px solid hsla(var(--hue), 66%, 55%, .3);
+    font-weight: var(--font-medium);
+}
+
+.project__content {
+    flex: 1;
+}
+
+.project__links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid hsla(var(--hue), 15%, 50%, .15);
+}
+
+.project__link {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: var(--small-font-size);
+    color: var(--first-color);
+    font-weight: var(--font-medium);
+    transition: .3s;
+}
+
+.project__link:hover {
+    color: var(--first-color-alt);
+}
+
 .projects__container {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     justify-content: center;
@@ -692,12 +883,8 @@ img {
 
 .about__data {
     text-align: center;
-    grid-column: 1 / -1;
-    /* Make it span full width if inside grid */
     max-width: 800px;
-    /* Prevent it from getting too wide to read */
     justify-self: center;
-    /* Center in grid */
     margin: 0 auto;
 }
 
@@ -729,6 +916,28 @@ img {
     /* Adjusted to be visible above bottom edge */
 }
 
+
+/* =============== LIGHT THEME =============== */
+body.light-theme {
+    --title-color: hsl(var(--hue), 15%, 15%);
+    --text-color: hsl(var(--hue), 8%, 35%);
+    --text-color-light: hsl(var(--hue), 4%, 55%);
+    --body-color: hsl(var(--hue), 20%, 96%);
+    --container-color: #fff;
+}
+
+body.light-theme .tech-badge,
+body.light-theme .project__category-badge {
+    background-color: hsla(var(--hue), 66%, 55%, .1);
+}
+
+body.light-theme .footer__social-link {
+    background-color: hsl(var(--hue), 20%, 88%);
+}
+
+body.light-theme .project__tags span {
+    background-color: hsl(var(--hue), 20%, 90%);
+}
 
 /* =============== MEDIA QUERIES =============== */
 /* For Small Devices */
