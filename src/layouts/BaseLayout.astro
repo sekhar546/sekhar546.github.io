@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { resume } from "../data/resume";
 const { title } = Astro.props;
+const siteUrl = "https://sekhar546.github.io";
 ---
 
 <!doctype html>
@@ -9,38 +10,70 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio of Raja Sekhar Reddy Gajjala — Lead Data Engineer specializing in Snowflake, AWS, Azure, and Cloud Data Architecture." />
-    <meta name="keywords" content="Lead Data Engineer, Data Architect, Snowflake, AWS, Azure, PySpark, dbt, Data Engineering" />
+    <meta name="description" content="Portfolio of Raja Sekhar Reddy Gajjala — Lead Data Engineer specializing in Snowflake, AWS, Azure, and Cloud Data Architecture with 14 years of experience across healthcare, insurance, and banking." />
+    <meta name="keywords" content="Lead Data Engineer, Data Architect, Snowflake, AWS, Azure, PySpark, dbt, Data Engineering, Cloud Architecture, ETL" />
     <meta name="author" content="Raja Sekhar Reddy Gajjala" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={siteUrl} />
 
     <meta property="og:title" content="Raja Sekhar Reddy Gajjala | Lead Data Engineer" />
-    <meta property="og:description" content="14 years architecting enterprise data platforms on Snowflake, AWS, and Azure." />
-    <meta property="og:url" content="https://sekhar546.github.io/" />
+    <meta property="og:description" content="14 years architecting enterprise data platforms on Snowflake, AWS, and Azure across healthcare, insurance, and banking." />
+    <meta property="og:url" content={siteUrl} />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Raja Sekhar Reddy Gajjala | Lead Data Engineer" />
     <meta name="twitter:description" content="14 years architecting enterprise data platforms on Snowflake, AWS, and Azure." />
 
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Raja Sekhar Reddy Gajjala",
-        "jobTitle": "Lead Data Engineer",
-        "email": "shekhar.rj@gmail.com",
-        "telephone": "+1 (437) 322-9719",
-        "url": "https://sekhar546.github.io",
-        "sameAs": [
-          "https://www.linkedin.com/in/sekhar546/",
-          "https://github.com/sekhar546"
-        ]
-      }
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Raja Sekhar Reddy Gajjala",
+          "givenName": "Raja Sekhar",
+          "familyName": "Reddy Gajjala",
+          "jobTitle": "Lead Data Engineer",
+          "email": "shekhar.rj@gmail.com",
+          "telephone": "+1 (437) 322-9719",
+          "url": {siteUrl},
+          "sameAs": [
+            "https://www.linkedin.com/in/sekhar546/",
+            "https://github.com/sekhar546"
+          ],
+          "knowsAbout": [
+            "Snowflake", "Amazon Web Services", "Microsoft Azure", "PySpark",
+            "Apache Spark", "dbt", "Data Engineering", "Cloud Architecture",
+            "ETL", "Data Warehousing", "Apache Iceberg", "Databricks"
+          ],
+          "workLocation": { "@type": "City", "name": "Toronto" },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Jawaharlal Nehru Technological University"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": {siteUrl} },
+            { "@type": "ListItem", "position": 2, "name": "About", "item": {siteUrl + "#about"} },
+            { "@type": "ListItem", "position": 3, "name": "Experience", "item": {siteUrl + "#experience"} },
+            { "@type": "ListItem", "position": 4, "name": "Projects", "item": {siteUrl + "#projects"} },
+            { "@type": "ListItem", "position": 5, "name": "Skills", "item": {siteUrl + "#skills"} },
+            { "@type": "ListItem", "position": 6, "name": "Contact", "item": {siteUrl + "#contact"} }
+          ]
+        }
+      ]
     </script>
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%BE%3C/text%3E%3C/svg%3E" />
     <title>{title ?? `${resume.name} | Lead Data Engineer`}</title>
   </head>
   <body class="bg-surface-dark text-text min-h-screen font-body">
+    <a href="#main-content" class="skip-link sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:outline-none">
+      Skip to main content
+    </a>
     <slot />
   </body>
 </html>
