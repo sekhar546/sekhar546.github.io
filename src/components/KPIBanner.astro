@@ -30,9 +30,17 @@ import { resume } from "../data/resume";
   function animateCounter(el) {
     const raw = el.dataset.target;
     const suffix = el.dataset.suffix ?? "";
-    const isNumeric = !isNaN(Number(raw));
-    const target = isNumeric ? parseInt(raw) : parseInt(raw.replace(/[^0-9]/g, ""));
-    const prefix = isNumeric ? "" : raw.replace(/[0-9]/g, "");
+    const rawStr = String(raw);
+    const numMatch = rawStr.match(/([^\d]*)(\d+)(.*)/);
+
+    if (!numMatch) {
+      el.textContent = rawStr + suffix;
+      return;
+    }
+
+    const prefix = numMatch[1];
+    const target = parseInt(numMatch[2]);
+    const inlineSuffix = numMatch[3];
 
     if (!target) return;
 
@@ -44,7 +52,7 @@ import { resume } from "../data/resume";
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = Math.round(eased * target);
-      el.textContent = prefix + current + suffix;
+      el.textContent = prefix + current + inlineSuffix + suffix;
       if (progress < 1) requestAnimationFrame(update);
     }
 
