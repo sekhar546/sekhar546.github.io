@@ -1,26 +1,21 @@
 ---
-export const prerender = true;
+import { resume } from "../data/resume";
 ---
 
 <section class="py-12 bg-surface/50">
   <div class="max-w-5xl mx-auto px-4">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-      {[
-        { label: "Years Experience", value: "14+" },
-        { label: "Cost Savings", value: "$50K/mo" },
-        { label: "Records Processed", value: "10M+" },
-        { label: "Projects Delivered", value: "20+" },
-      ].map((stat, i) => (
+      {resume.stats.map((stat, i) => (
         <div
-          class="stat-card p-4 md:p-6 rounded-xl bg-surface-light border border-border text-center hover:border-primary/20 transition-colors"
+          class="p-4 md:p-6 rounded-xl bg-surface-light border border-border text-center hover:border-primary/20 transition-all hover:-translate-y-1 duration-300"
           style={`animation-delay: ${i * 100}ms`}
         >
           <div
-            class="text-2xl md:text-3xl font-heading font-bold gradient-text stat-value"
-            data-target={stat.value.replace(/[^0-9]/g, "")}
-            data-suffix={stat.value.replace(/[0-9]/g, "")}
+            class="kpi-counter text-2xl md:text-3xl font-heading font-bold gradient-text"
+            data-target={stat.value}
+            data-suffix={stat.suffix ?? ""}
           >
-            {stat.value}
+            0
           </div>
           <p class="text-text-dim text-sm mt-1">{stat.label}</p>
         </div>
@@ -29,13 +24,44 @@ export const prerender = true;
   </div>
 </section>
 
-<style>
-  .stat-card {
-    opacity: 0;
-    animation: slideUp 0.5s ease-out forwards;
+<script>
+  const counters = document.querySelectorAll(".kpi-counter");
+
+  function animateCounter(el) {
+    const raw = el.dataset.target;
+    const suffix = el.dataset.suffix ?? "";
+    const isNumeric = !isNaN(Number(raw));
+    const target = isNumeric ? parseInt(raw) : parseInt(raw.replace(/[^0-9]/g, ""));
+    const prefix = isNumeric ? "" : raw.replace(/[0-9]/g, "");
+
+    if (!target) return;
+
+    const duration = 1500;
+    const start = performance.now();
+
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(eased * target);
+      el.textContent = prefix + current + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
   }
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  counters.forEach((el) => observer.observe(el));
+</script>

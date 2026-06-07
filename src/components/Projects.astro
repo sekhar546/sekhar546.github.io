@@ -12,11 +12,11 @@ import { resume } from "../data/resume";
     <div class="flex justify-center gap-3 mb-10 flex-wrap">
       {["all", "data", "cloud", "ai"].map((filter) => (
         <button
-          class={`filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-colors ${
-            filter === "all"
-              ? "bg-primary text-white border-primary"
-              : "bg-transparent text-text-muted border-border hover:border-primary/30 hover:text-primary"
-          }`}
+          class="filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300"
+          class:list={{
+            "bg-primary text-white border-primary": filter === "all",
+            "bg-transparent text-text-muted border-border hover:border-primary/30 hover:text-primary": filter !== "all",
+          }}
           data-filter={filter}
         >
           {filter === "all" ? "All" : filter === "data" ? "Data Engineering" : filter === "cloud" ? "Cloud" : "AI/ML"}
@@ -25,8 +25,12 @@ import { resume } from "../data/resume";
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
-      {resume.projects.map((project) => (
-        <div class="project-card bg-surface-light rounded-xl p-6 border border-border hover:border-primary/20 transition-all glow-border flex flex-col" data-category={project.category}>
+      {resume.projects.map((project, i) => (
+        <div
+          class="project-card bg-surface-light rounded-xl p-6 border border-border hover:border-primary/20 transition-all duration-300 glow-border flex flex-col"
+          data-category={project.category}
+          style={`animation-delay: ${i * 100}ms`}
+        >
           <div class="mb-3">
             <span class="px-2.5 py-1 text-[10px] font-medium rounded-full bg-primary/10 text-primary border border-primary/20 uppercase tracking-wider">
               {project.category === "data" ? "Data Engineering" : project.category === "cloud" ? "Cloud" : "AI/ML"}
@@ -62,16 +66,26 @@ import { resume } from "../data/resume";
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       buttons.forEach((b) => {
-        b.className = `filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-colors bg-transparent text-text-muted border-border hover:border-primary/30 hover:text-primary`;
+        b.className = "filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300 bg-transparent text-text-muted border-border hover:border-primary/30 hover:text-primary";
       });
-      btn.className = `filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-colors bg-primary text-white border-primary`;
+      btn.className = "filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300 bg-primary text-white border-primary";
 
       const filter = btn.getAttribute("data-filter");
-      cards.forEach((card) => {
-        if (filter === "all" || card.getAttribute("data-category") === filter) {
+      cards.forEach((card, i) => {
+        const match = filter === "all" || card.getAttribute("data-category") === filter;
+        if (match) {
           card.style.display = "flex";
+          card.style.opacity = "0";
+          card.style.transform = "translateY(10px)";
+          requestAnimationFrame(() => {
+            card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+          });
         } else {
-          card.style.display = "none";
+          card.style.opacity = "0";
+          card.style.transform = "translateY(10px)";
+          setTimeout(() => { card.style.display = "none"; }, 200);
         }
       });
     });
