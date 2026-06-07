@@ -1,80 +1,108 @@
 # Portfolio Website — Raja Sekhar Reddy Gajjala
 
-A personal portfolio website showcasing the professional experience, projects, and skills of **Raja Sekhar Reddy Gajjala**, a Data Engineer and Technology Lead.
+A modern, static portfolio website for **Raja Sekhar Reddy Gajjala**, a Lead Data Engineer with 14 years of experience across healthcare, insurance, and banking domains.
+
+Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com), deployed via **GitHub Pages** + **GitHub Actions**.
 
 ## Tech Stack
 
-- **HTML5** — Semantic markup with accessible structure
-- **CSS3** — Custom properties (CSS variables), Flexbox, Grid, responsive media queries
-- **JavaScript** — Vanilla JS for interactivity (no frameworks)
-- **Fonts** — DM Sans (body) + Outfit (headings) via Google Fonts
-- **Icons** — Font Awesome 6 (free)
+| Layer | Technology |
+|---|---|
+| Framework | [Astro](https://astro.build) v5 (static site generation) |
+| Styling | [Tailwind CSS](https://tailwindcss.com) v4 |
+| Charts | [Chart.js](https://www.chartjs.org) v4 (dynamic import) |
+| Fonts | JetBrains Mono (headings) + Inter (body) via Google Fonts |
+| Icons | Inline SVGs (no icon library dependency) |
+| Hosting | GitHub Pages (via GitHub Actions deploy) |
 
 ## Features
 
-- Responsive design (mobile-first with breakpoints at 320px, 576px, 767px, 968px)
-- Fixed navigation header with backdrop blur
-- Mobile bottom-sheet menu with hamburger toggle
-- Typing animation in hero subtitle cycling through job titles
-- Timeline-based experience section with expandable details
-- Project cards with category filter (All / Cloud / Data Engineering / AI/ML)
-- Skills grid with categorized groupings
-- Contact cards (email, phone, LinkedIn)
-- Scroll-to-top button
-- Active navigation link highlighting on scroll
-- Light / Dark theme toggle with localStorage persistence
-- Open Graph meta tags for social sharing
+- **Responsive design**: Mobile-first with breakpoints, hamburger nav on small screens
+- **Dark theme**: Default dark mode with toggle and localStorage persistence
+- **Animated typing**: Hero subtitle cycles through "Lead Data Engineer", "Data Architect", "AI Engineer"
+- **KPI metrics strip**: Animated counters showing experience, cost savings, scale
+- **Experience timeline**: Alternating layout with expandable achievements
+- **Project filter**: Category-based filtering (All, Data Engineering, Cloud, AI/ML)
+- **Skills radar**: Chart.js radar chart visualizing technical proficiency
+- **Skill bars**: Animated progress bars for each technology
+- **Pipeline diagram**: Visual architecture flow in About section
+- **Schema.org structured data**: Person schema for search engine visibility
+- **SEO optimized**: Open Graph, Twitter Cards, semantic HTML
+- **Accessibility**: WCAG-compliant contrast ratios, aria labels
 
 ## Sections
 
-| Section      | Description |
-|--------------|-------------|
-| Home         | Hero section with typing animation, social links, and call-to-action |
-| About        | Professional summary with key stats |
-| Experience   | Timeline of professional roles with expandable achievement details |
-| Projects     | Highlighted project cards with category filter |
-| Skills       | Categorized technical skills |
-| Contact      | Email, phone, and LinkedIn contact cards |
+| Section | Description |
+|---|---|
+| Hero | Typing animation, profile photo, social links, CTAs |
+| KPI Strip | Four animated metric counters |
+| About | Bio summary, pipeline architecture flow |
+| Experience | Alternating timeline with 4 roles |
+| Projects | Filterable project cards with quantified highlights |
+| Skills | Progress bars + Chart.js radar visualization |
+| Contact | Email, phone, LinkedIn cards |
 
 ## Getting Started
 
-This is a static site with no build tools or dependencies. To run locally:
+```bash
+# Install dependencies
+npm install
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/sekhar546/sekhar546.github.io.git
-   ```
+# Start dev server (http://localhost:4321)
+npm run dev
 
-2. Open `index.html` in your browser, or serve with any static file server:
-   ```bash
-   # Using Python
-   python -m http.server 8000
+# Build for production (outputs to dist/)
+npm run build
 
-   # Using Node.js (npx)
-   npx serve .
-   ```
-
-3. Navigate to `http://localhost:8000` in your browser.
+# Preview the production build
+npm run preview
+```
 
 ## Deployment
 
-This site is designed to be deployed on **GitHub Pages**:
+This site uses **GitHub Actions** for CI/CD. Every push to `main` triggers:
 
-1. Push to the `main` branch of `sekhar546/sekhar546.github.io`
-2. GitHub Pages will automatically serve the site from the root
+1. `npm ci` — clean install
+2. `npm run build` — Astro builds to `dist/`
+3. `actions/upload-pages-artifact` — uploads build output
+4. `actions/deploy-pages` — deploys to GitHub Pages
+
+The workflow file is at `.github/workflows/deploy.yml`.
+
+## Project Structure
+
+```
+├── .github/workflows/deploy.yml    # CI/CD pipeline
+├── src/
+│   ├── components/                  # Astro components
+│   │   ├── Header.astro             # Navigation + theme toggle
+│   │   ├── Hero.astro               # Hero section with typing animation
+│   │   ├── KPIBanner.astro          # KPI metric counters
+│   │   ├── About.astro              # Bio + pipeline diagram
+│   │   ├── Experience.astro         # Career timeline
+│   │   ├── Projects.astro           # Filterable project cards
+│   │   ├── SkillsRadar.astro        # Radar chart + skill bars
+│   │   └── Contact.astro            # Contact cards
+│   ├── data/
+│   │   └── resume.js                # Central data source
+│   ├── layouts/
+│   │   └── BaseLayout.astro         # HTML shell + SEO meta
+│   ├── pages/
+│   │   └── index.astro              # Main page
+│   └── styles/
+│       └── global.css               # Tailwind + custom theme
+├── public/assets/profile.jpg        # Profile photo
+├── DESIGN.md                        # Design system documentation
+├── astro.config.mjs
+└── package.json
+```
 
 ## Customization
 
-- **Colors**: Edit CSS custom properties in the `:root` block in `css/styles.css`
-- **Light theme overrides**: Edit the `body.light-theme` block in `css/styles.css`
-- **Content**: Update text and links directly in `index.html`
-- **Typing titles**: Edit the `typingTitles` array in `js/script.js`
-
-## Adding a Profile Photo
-
-1. Place your photo at `assets/profile.jpg`
-2. In `index.html`, replace the `<div class="home__img-placeholder">` block in the hero section with `<img src="assets/profile.jpg" alt="Raja Sekhar" class="home__img">`
-3. Uncomment the `<img>` tag in the About section and update its `src`
+- **Content**: Edit `src/data/resume.js` — all text, stats, experience, skills in one file
+- **Colors**: Edit the `@theme` block in `src/styles/global.css`
+- **Design**: See `DESIGN.md` for the complete design system reference
+- **Typing titles**: Edit the `titles` array in `src/components/Hero.astro`
 
 ## License
 

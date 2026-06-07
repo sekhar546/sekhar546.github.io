@@ -55,7 +55,7 @@ window.addEventListener('scroll', scrollUp)
 
 /*==================== TYPING ANIMATION ====================*/
 const typingEl = document.getElementById('typing-text')
-const typingTitles = ['Technology Lead', 'Data Engineer', 'Cloud Architect']
+const typingTitles = ['Lead Data Engineer', 'Data Architect', 'AI Engineer']
 let titleIndex = 0, charIndex = 0, isDeleting = false
 
 function typeLoop() {

@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import KPIBanner from "../components/KPIBanner.astro";
+import About from "../components/About.astro";
+import Experience from "../components/Experience.astro";
+import Projects from "../components/Projects.astro";
+import SkillsRadar from "../components/SkillsRadar.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout>
+  <Header />
+  <main>
+    <Hero />
+    <KPIBanner />
+    <About />
+    <Experience />
+    <Projects />
+    <SkillsRadar />
+    <Contact />
+  </main>
+  <Footer />
+
+  <a
+    href="#"
+    id="scroll-top"
+    class="fixed bottom-6 right-6 z-40 w-10 h-10 rounded-lg bg-primary/80 text-white flex items-center justify-center opacity-0 invisible transition-all hover:bg-primary"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+  </a>
+
+  <script>
+    const scrollTop = document.getElementById("scroll-top");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        scrollTop.style.opacity = "1";
+        scrollTop.style.visibility = "visible";
+      } else {
+        scrollTop.style.opacity = "0";
+        scrollTop.style.visibility = "hidden";
+      }
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,46 @@
+---
+import "../styles/global.css";
+import { resume } from "../data/resume";
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio of Raja Sekhar Reddy Gajjala — Lead Data Engineer specializing in Snowflake, AWS, Azure, and Cloud Data Architecture." />
+    <meta name="keywords" content="Lead Data Engineer, Data Architect, Snowflake, AWS, Azure, PySpark, dbt, Data Engineering" />
+    <meta name="author" content="Raja Sekhar Reddy Gajjala" />
+
+    <meta property="og:title" content="Raja Sekhar Reddy Gajjala | Lead Data Engineer" />
+    <meta property="og:description" content="14 years architecting enterprise data platforms on Snowflake, AWS, and Azure." />
+    <meta property="og:url" content="https://sekhar546.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Raja Sekhar Reddy Gajjala | Lead Data Engineer" />
+    <meta name="twitter:description" content="14 years architecting enterprise data platforms on Snowflake, AWS, and Azure." />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Raja Sekhar Reddy Gajjala",
+        "jobTitle": "Lead Data Engineer",
+        "email": "shekhar.rj@gmail.com",
+        "telephone": "+1 (437) 322-9719",
+        "url": "https://sekhar546.github.io",
+        "sameAs": [
+          "https://www.linkedin.com/in/sekhar546/",
+          "https://github.com/sekhar546"
+        ]
+      }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%BE%3C/text%3E%3C/svg%3E" />
+    <title>{title ?? `${resume.name} | Lead Data Engineer`}</title>
+  </head>
+  <body class="bg-surface-dark text-text min-h-screen font-body">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,86 @@
+---
+import { resume } from "../data/resume";
+---
+
+<section id="skills" class="py-20">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <p class="text-primary font-heading text-sm tracking-widest uppercase mb-2">Expertise</p>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-white">Technical Skills</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {Object.entries(resume.skills).map(([groupName, skills]) => (
+        <div class="bg-surface-light rounded-xl p-6 border border-border">
+          <h3 class="font-heading font-semibold text-primary mb-5 text-center">{groupName}</h3>
+          <div class="space-y-4">
+            {skills.map((skill) => (
+              <div>
+                <div class="flex justify-between text-sm mb-1.5">
+                  <span class="text-white font-medium">{skill.name}</span>
+                  <span class="text-text-dim">{skill.level}%</span>
+                </div>
+                <div class="h-1.5 rounded-full bg-surface-dark overflow-hidden">
+                  <div
+                    class="h-full rounded-full bg-gradient-to-r from-primary to-violet skill-bar"
+                    style={`width: ${skill.level}%`}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 bg-surface-light rounded-xl p-6 border border-border max-w-md mx-auto">
+      <h3 class="font-heading font-semibold text-white mb-4 text-center">Skills Radar</h3>
+      <canvas id="skillsRadar" width="400" height="400" class="max-w-xs mx-auto"></canvas>
+    </div>
+  </div>
+</section>
+
+<script>
+  (async () => {
+    const canvas = document.getElementById("skillsRadar");
+    if (!canvas) return;
+
+    const { Chart, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } = await import("chart.js");
+    Chart.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
+
+    new Chart(canvas, {
+      type: "radar",
+      data: {
+        labels: ["Cloud", "Warehousing", "ETL / Pipelines", "Streaming", "Governance", "AI / ML"],
+        datasets: [{
+          label: "Proficiency",
+          data: [90, 95, 95, 85, 85, 70],
+          backgroundColor: "rgba(6, 182, 212, 0.1)",
+          borderColor: "#06b6d4",
+          borderWidth: 2,
+          pointBackgroundColor: "#06b6d4",
+          pointBorderColor: "#12122a",
+          pointBorderWidth: 2,
+          pointRadius: 4,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        scales: {
+          r: {
+            beginAtZero: true,
+            max: 100,
+            ticks: { stepSize: 20, color: "#64748b", backdropColor: "transparent" },
+            grid: { color: "rgba(148, 163, 184, 0.1)" },
+            angleLines: { color: "rgba(148, 163, 184, 0.1)" },
+            pointLabels: { color: "#94a3b8", font: { family: "'JetBrains Mono', monospace", size: 11 } },
+          },
+        },
+        plugins: {
+          legend: { display: false },
+        },
+      },
+    });
+  })();
+</script>

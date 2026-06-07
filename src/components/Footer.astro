@@ -1,0 +1,45 @@
+---
+export const prerender = true;
+---
+
+<div class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    <div>
+      <button
+        id="theme-toggle"
+        class="fixed top-20 right-4 z-40 p-3 rounded-full bg-surface-light border border-border text-text-muted hover:text-primary hover:border-primary/30 transition-all"
+        aria-label="Toggle theme"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<footer class="border-t border-border py-8 mt-12">
+  <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    <p class="text-text-dim text-sm">&copy; {new Date().getFullYear()} Raja Sekhar Reddy Gajjala. All rights reserved.</p>
+    <div class="flex items-center gap-4">
+      <a href="#about" class="text-text-dim text-sm hover:text-primary transition-colors">About</a>
+      <a href="#experience" class="text-text-dim text-sm hover:text-primary transition-colors">Experience</a>
+      <a href="#projects" class="text-text-dim text-sm hover:text-primary transition-colors">Projects</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById("theme-toggle");
+  if (toggle) {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") document.documentElement.classList.replace("dark", "light");
+
+    toggle.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      document.documentElement.classList.replace(isDark ? "dark" : "light", isDark ? "light" : "dark");
+      localStorage.setItem("theme", isDark ? "light" : "dark");
+    });
+  }
+</script>

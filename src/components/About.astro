@@ -1,0 +1,63 @@
+---
+import { resume } from "../data/resume";
+---
+
+<section id="about" class="py-20">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <p class="text-primary font-heading text-sm tracking-widest uppercase mb-2">About</p>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-white">Background</h2>
+    </div>
+
+    <div class="grid md:grid-cols-5 gap-8 items-start">
+      <div class="md:col-span-2 flex justify-center">
+        <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-primary/20 glow-border">
+          <img src="/assets/profile.jpg" alt={resume.name} class="w-full h-full object-cover object-center-top" />
+        </div>
+      </div>
+
+      <div class="md:col-span-3 space-y-4">
+        {resume.summary.map((p) => (
+          <p class="text-text-muted leading-relaxed">{p}</p>
+        ))}
+
+        <div class="flex flex-wrap gap-4 pt-4">
+          {[
+            { label: "Healthcare", icon: "🏥" },
+            { label: "Insurance", icon: "🛡️" },
+            { label: "Banking", icon: "🏦" },
+            { label: "HIPAA Compliant", icon: "🔒" },
+          ].map((domain) => (
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
+              <span>{domain.icon}</span>
+              {domain.label}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 bg-surface-light rounded-xl p-6 md:p-8 border border-border">
+      <h3 class="font-heading text-lg font-semibold text-white mb-4 text-center">Pipeline Architecture Vision</h3>
+      <div class="flex flex-wrap items-center justify-center gap-3 md:gap-6 text-xs md:text-sm">
+        {[
+          { label: "Sources", icon: "📡", color: "text-yellow-400" },
+          { label: "Ingestion", icon: "⬇️", color: "text-primary" },
+          { label: "Processing", icon: "⚙️", color: "text-violet" },
+          { label: "Storage", icon: "💾", color: "text-accent" },
+          { label: "Analytics", icon: "📊", color: "text-orange-400" },
+        ].map((layer, i, arr) => (
+          <>
+            <div class="flex flex-col items-center gap-1">
+              <span class={layer.color + " text-xl"}>{layer.icon}</span>
+              <span class="font-heading text-text-muted whitespace-nowrap">{layer.label}</span>
+            </div>
+            {i < arr.length - 1 && (
+              <div class="hidden md:block w-8 h-px bg-border-light mt-5" />
+            )}
+          </>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
