@@ -63,12 +63,11 @@ const radarData = computeRadarData();
 </section>
 
 <script>
-  (async () => {
+  (() => {
     const canvas = document.getElementById("skillsRadar");
-    if (!canvas) return;
+    if (!canvas || typeof Chart === "undefined") return;
 
-    const { Chart, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } = await import("chart.js");
-    Chart.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
+    const data = JSON.parse(canvas.dataset.radar);
 
     new Chart(canvas, {
       type: "radar",
@@ -76,7 +75,7 @@ const radarData = computeRadarData();
         labels: ["Cloud", "Warehousing", "ETL / Pipelines", "Streaming", "Governance", "AI / ML"],
         datasets: [{
           label: "Proficiency",
-          data: JSON.parse(canvas.dataset.radar),
+          data,
           backgroundColor: "rgba(6, 182, 212, 0.1)",
           borderColor: "#06b6d4",
           borderWidth: 2,
