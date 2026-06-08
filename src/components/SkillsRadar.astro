@@ -14,9 +14,9 @@ function computeRadarData() {
     avg(cloudScores),
     avg([cloudScores[2] ?? 0, cloudScores[3] ?? 0]),
     avg([...cloudScores, ...engScores]),
-    cloudScores[0] ?? 80,
-    cloudScores[4] ?? 80,
-    engScores[4] ?? 70,
+    cloudScores[0] ?? 4,
+    cloudScores[4] ?? 4,
+    engScores[4] ?? 3,
   ];
 }
 
@@ -39,13 +39,13 @@ const radarData = computeRadarData();
               <div>
                 <div class="flex justify-between text-sm mb-1.5">
                   <span class="text-white font-medium">{skill.name}</span>
-                  <span class="text-text-dim">{skill.level}%</span>
+                  <span class="text-text-dim">{skill.level}/5</span>
                 </div>
                 <div class="h-1.5 rounded-full bg-surface-dark overflow-hidden">
                   <div
                     class="h-full rounded-full bg-gradient-to-r from-primary to-violet skill-bar"
                     style={`width: 0%`}
-                    data-width={skill.level}
+                    data-width={skill.level * 20}
                   />
                 </div>
               </div>
@@ -91,8 +91,8 @@ const radarData = computeRadarData();
         scales: {
           r: {
             beginAtZero: true,
-            max: 100,
-            ticks: { stepSize: 20, color: "#64748b", backdropColor: "transparent" },
+            max: 5,
+            ticks: { stepSize: 1, color: "#64748b", backdropColor: "transparent" },
             grid: { color: "rgba(148, 163, 184, 0.1)" },
             angleLines: { color: "rgba(148, 163, 184, 0.1)" },
             pointLabels: { color: "#94a3b8", font: { family: "'JetBrains Mono', monospace", size: 11 } },

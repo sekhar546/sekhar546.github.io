@@ -119,20 +119,20 @@ export const resume = {
 
   skills: {
     "Cloud & Data Platforms": [
-      { name: "AWS (EMR, Glue, Lambda, MWAA)", level: 95 },
-      { name: "Azure (ADF, ADLS Gen2, Synapse)", level: 85 },
-      { name: "Snowflake (Snowpipe, Streams, Snowpark)", level: 95 },
-      { name: "Databricks (Delta Lake, Unity Catalog)", level: 85 },
-      { name: "Amazon Redshift", level: 80 },
-      { name: "Apache Iceberg / Open Table Formats", level: 75 },
+      { name: "AWS (EMR, Glue, Lambda, MWAA)", level: 5 },
+      { name: "Azure (ADF, ADLS Gen2, Synapse)", level: 4 },
+      { name: "Snowflake (Snowpipe, Streams, Snowpark)", level: 5 },
+      { name: "Databricks (Delta Lake, Unity Catalog)", level: 4 },
+      { name: "Amazon Redshift", level: 4 },
+      { name: "Apache Iceberg / Open Table Formats", level: 4 },
     ],
     "Data Engineering & AI": [
-      { name: "PySpark / Python (Pandas, Polars)", level: 95 },
-      { name: "SQL (Advanced) / dbt Core", level: 95 },
-      { name: "Airflow / MWAA / Docker", level: 85 },
-      { name: "Terraform / CI/CD / Git", level: 80 },
-      { name: "LangChain / HuggingFace / Ollama", level: 70 },
-      { name: "DuckDB / PostgreSQL", level: 75 },
+      { name: "PySpark / Python (Pandas, Polars)", level: 5 },
+      { name: "SQL (Advanced) / dbt Core", level: 5 },
+      { name: "Airflow / MWAA / Docker", level: 4 },
+      { name: "Terraform / CI/CD / Git", level: 4 },
+      { name: "LangChain / HuggingFace / Ollama", level: 3 },
+      { name: "DuckDB / PostgreSQL", level: 4 },
     ],
   },
 
