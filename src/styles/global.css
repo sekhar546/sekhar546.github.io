@@ -141,12 +141,4 @@ html.light .glow-border:hover {
     opacity: 1;
     transform: translateY(0);
   }
-  .profile-blend {
-    -webkit-mask-image: radial-gradient(circle at center, black 45%, transparent 72%);
-    mask-image: radial-gradient(circle at center, black 45%, transparent 72%);
-  }
-  .profile-blend-dark {
-    -webkit-mask-image: radial-gradient(circle at center, black 40%, var(--color-surface-dark) 68%);
-    mask-image: radial-gradient(circle at center, black 40%, transparent 68%);
-  }
 }

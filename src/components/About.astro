@@ -11,9 +11,8 @@ import { resume } from "../data/resume";
 
     <div class="grid md:grid-cols-5 gap-8 items-start">
       <div class="md:col-span-2 flex justify-center">
-        <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-primary/20 glow-border relative">
-          <div class="absolute inset-0 rounded-full z-10 pointer-events-none" style="box-shadow: inset 0 0 50px 15px var(--color-surface-dark)" />
-          <img src="/assets/profile.webp" alt={resume.name} width="224" height="224" class="w-full h-full object-cover object-center-top profile-blend" loading="lazy" />
+        <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border border-primary/20 glow-border">
+          <img src="/assets/profile.webp" alt={resume.name} width="224" height="224" class="w-full h-full object-cover object-center-top" loading="lazy" />
         </div>
       </div>
 
