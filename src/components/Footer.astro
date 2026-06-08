@@ -20,6 +20,10 @@ import { resume } from "../data/resume";
 </footer>
 
 <script>
-  const saved = localStorage.getItem("theme");
-  if (saved === "light") document.documentElement.classList.replace("dark", "light");
+  try {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") document.documentElement.classList.replace("dark", "light");
+  } catch (e) {
+    console.warn("Footer theme check failed:", e);
+  }
 </script>

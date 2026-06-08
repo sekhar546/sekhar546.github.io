@@ -33,46 +33,50 @@ import Footer from "../components/Footer.astro";
   </a>
 
   <script>
-    const scrollTop = document.getElementById("scroll-top");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) {
-        scrollTop.style.opacity = "1";
-        scrollTop.style.visibility = "visible";
-      } else {
-        scrollTop.style.opacity = "0";
-        scrollTop.style.visibility = "hidden";
-      }
-    });
+    try {
+      const scrollTop = document.getElementById("scroll-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          scrollTop.style.opacity = "1";
+          scrollTop.style.visibility = "visible";
+        } else {
+          scrollTop.style.opacity = "0";
+          scrollTop.style.visibility = "hidden";
+        }
+      });
 
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("reveal-visible");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("reveal-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("section-reveal-visible");
-            sectionObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.05 }
-    );
-    document.querySelectorAll("section").forEach((el) => {
-      if (!el.classList.contains("reveal")) {
-        el.classList.add("section-reveal");
-        sectionObserver.observe(el);
-      }
-    });
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("section-reveal-visible");
+              sectionObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.05 }
+      );
+      document.querySelectorAll("section").forEach((el) => {
+        if (!el.classList.contains("reveal")) {
+          el.classList.add("section-reveal");
+          sectionObserver.observe(el);
+        }
+      });
+    } catch (e) {
+      console.warn("Page reveal animations failed:", e);
+    }
   </script>
 </BaseLayout>

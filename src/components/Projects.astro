@@ -60,34 +60,38 @@ import { resume } from "../data/resume";
 </section>
 
 <script>
-  const buttons = document.querySelectorAll(".filter-btn");
-  const cards = document.querySelectorAll(".project-card");
+  try {
+    const buttons = document.querySelectorAll(".filter-btn");
+    const cards = document.querySelectorAll(".project-card");
 
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      buttons.forEach((b) => {
-        b.className = "filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300 bg-transparent text-text-muted border-border hover:border-primary/30 hover:text-primary";
-      });
-      btn.className = "filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300 bg-primary text-white border-primary";
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        buttons.forEach((b) => {
+          b.className = "filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300 bg-transparent text-text-muted border-border hover:border-primary/30 hover:text-primary";
+        });
+        btn.className = "filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300 bg-primary text-white border-primary";
 
-      const filter = btn.getAttribute("data-filter");
-      cards.forEach((card, i) => {
-        const match = filter === "all" || card.getAttribute("data-category") === filter;
-        if (match) {
-          card.style.display = "flex";
-          card.style.opacity = "0";
-          card.style.transform = "translateY(10px)";
-          requestAnimationFrame(() => {
-            card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-            card.style.opacity = "1";
-            card.style.transform = "translateY(0)";
-          });
-        } else {
-          card.style.opacity = "0";
-          card.style.transform = "translateY(10px)";
-          setTimeout(() => { card.style.display = "none"; }, 200);
-        }
+        const filter = btn.getAttribute("data-filter");
+        cards.forEach((card, i) => {
+          const match = filter === "all" || card.getAttribute("data-category") === filter;
+          if (match) {
+            card.style.display = "flex";
+            card.style.opacity = "0";
+            card.style.transform = "translateY(10px)";
+            requestAnimationFrame(() => {
+              card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+              card.style.opacity = "1";
+              card.style.transform = "translateY(0)";
+            });
+          } else {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(10px)";
+            setTimeout(() => { card.style.display = "none"; }, 200);
+          }
+        });
       });
     });
-  });
+  } catch (e) {
+    console.warn("Project filter init failed:", e);
+  }
 </script>

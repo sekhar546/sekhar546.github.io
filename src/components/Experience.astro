@@ -77,17 +77,25 @@ import { resume } from "../data/resume";
 </section>
 
 <script>
-  document.querySelectorAll("#experience details").forEach((details) => {
-    details.addEventListener("toggle", () => {
-      const label = details.querySelector(".toggle-label");
-      const svg = details.querySelector("summary svg");
-      if (details.open) {
-        if (label) label.textContent = "Show less";
-        if (svg) svg.style.transform = "rotate(180deg)";
-      } else {
-        if (label) label.textContent = label.textContent.replace("Show less", "Show more");
-        if (svg) svg.style.transform = "rotate(0deg)";
-      }
+  try {
+    document.querySelectorAll("#experience details").forEach((details) => {
+      details.addEventListener("toggle", () => {
+        try {
+          const label = details.querySelector(".toggle-label");
+          const svg = details.querySelector("summary svg");
+          if (details.open) {
+            if (label) label.textContent = "Show less";
+            if (svg) svg.style.transform = "rotate(180deg)";
+          } else {
+            if (label) label.textContent = label.textContent?.replace("Show less", "Show more") ?? "Show more";
+            if (svg) svg.style.transform = "rotate(0deg)";
+          }
+        } catch (e) {
+          console.warn("Experience toggle error:", e);
+        }
+      });
     });
-  });
+  } catch (e) {
+    console.warn("Experience init failed:", e);
+  }
 </script>

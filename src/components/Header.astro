@@ -75,43 +75,47 @@ import { resume } from "../data/resume";
 </header>
 
 <script>
-  const menuBtn = document.getElementById("mobile-menu-btn");
-  const menuClose = document.getElementById("mobile-menu-close");
-  const mobileMenu = document.getElementById("mobile-menu");
+  try {
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const menuClose = document.getElementById("mobile-menu-close");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-  menuBtn?.addEventListener("click", () => mobileMenu?.classList.remove("hidden"));
-  menuClose?.addEventListener("click", () => mobileMenu?.classList.add("hidden"));
+    menuBtn?.addEventListener("click", () => mobileMenu?.classList.remove("hidden"));
+    menuClose?.addEventListener("click", () => mobileMenu?.classList.add("hidden"));
 
-  mobileMenu?.querySelectorAll("a").forEach((link) =>
-    link.addEventListener("click", () => mobileMenu.classList.add("hidden"))
-  );
+    mobileMenu?.querySelectorAll("a").forEach((link) =>
+      link.addEventListener("click", () => mobileMenu.classList.add("hidden"))
+    );
 
-  const navLinks = document.querySelectorAll(".nav-link");
-  const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+    const sections = document.querySelectorAll("section[id]");
 
-  function updateActiveLink() {
-    const scrollY = window.scrollY + 120;
-    let current = "";
-    sections.forEach((s) => {
-      if (s.offsetTop <= scrollY && s.offsetTop + s.offsetHeight > scrollY) {
-        current = s.id;
-      }
+    function updateActiveLink() {
+      const scrollY = window.scrollY + 120;
+      let current = "";
+      sections.forEach((s) => {
+        if (s.offsetTop <= scrollY && s.offsetTop + s.offsetHeight > scrollY) {
+          current = s.id;
+        }
+      });
+      navLinks.forEach((link) => {
+        link.classList.toggle("text-primary", link.dataset.section === current);
+        link.classList.toggle("text-text-muted", link.dataset.section !== current);
+      });
+    }
+
+    window.addEventListener("scroll", updateActiveLink, { passive: true });
+    updateActiveLink();
+
+    const themeSaved = localStorage.getItem("theme");
+    if (themeSaved === "light") document.documentElement.classList.replace("dark", "light");
+
+    document.getElementById("theme-toggle")?.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      document.documentElement.classList.replace(isDark ? "dark" : "light", isDark ? "light" : "dark");
+      localStorage.setItem("theme", isDark ? "light" : "dark");
     });
-    navLinks.forEach((link) => {
-      link.classList.toggle("text-primary", link.dataset.section === current);
-      link.classList.toggle("text-text-muted", link.dataset.section !== current);
-    });
+  } catch (e) {
+    console.warn("Header init failed:", e);
   }
-
-  window.addEventListener("scroll", updateActiveLink, { passive: true });
-  updateActiveLink();
-
-  const saved = localStorage.getItem("theme");
-  if (saved === "light") document.documentElement.classList.replace("dark", "light");
-
-  document.getElementById("theme-toggle")?.addEventListener("click", () => {
-    const isDark = document.documentElement.classList.contains("dark");
-    document.documentElement.classList.replace(isDark ? "dark" : "light", isDark ? "light" : "dark");
-    localStorage.setItem("theme", isDark ? "light" : "dark");
-  });
 </script>
