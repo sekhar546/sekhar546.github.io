@@ -1,0 +1,39 @@
+---
+import { resume } from "../data/resume";
+---
+
+<section id="education" class="py-20">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <p class="text-primary font-heading text-sm tracking-widest uppercase mb-2">Background</p>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold text-heading">Education</h2>
+    </div>
+
+    <div class="flex justify-center">
+      <div class="flex flex-col gap-4 w-full max-w-xl">
+        {resume.education.map((edu) => (
+          <div class="bg-surface-light rounded-xl p-6 border border-border hover:border-primary/20 transition-all glow-border">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-heading font-semibold text-heading">{edu.degree}</h3>
+                <p class="text-primary text-sm font-medium">{edu.field}</p>
+                <p class="text-text-muted text-sm mt-1">{edu.institution}</p>
+                <div class="flex items-center gap-2 text-text-dim text-xs mt-2">
+                  <span>{edu.location}</span>
+                  <span class="w-1 h-1 rounded-full bg-text-dim" />
+                  <span>{edu.period}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
