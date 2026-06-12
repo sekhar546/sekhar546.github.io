@@ -68,10 +68,14 @@ const radarData = computeRadarData();
 
 <script>
   (() => {
-    const canvas = document.getElementById("skillsRadar");
-    if (!canvas || typeof Chart === "undefined") return;
+    try {
+      const canvas = document.getElementById("skillsRadar");
+      if (!canvas || typeof Chart === "undefined") {
+        if (typeof Chart === "undefined") console.warn("Chart.js not loaded");
+        return;
+      }
 
-    const data = JSON.parse(canvas.dataset.radar);
+      const data = JSON.parse(canvas.dataset.radar);
 
     new Chart(canvas, {
       type: "radar",
@@ -123,5 +127,8 @@ const radarData = computeRadarData();
       { threshold: 0.3 }
     );
     skillBars.forEach((bar) => barObserver.observe(bar));
+    } catch (e) {
+      console.warn("Skills radar init failed:", e);
+    }
   })();
 </script>

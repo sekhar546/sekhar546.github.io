@@ -66,8 +66,33 @@ Built with Astro 5 + Tailwind CSS v4, deployed via GitHub Pages + GitHub Actions
 | `src/components/*.astro` | Each page section as a component |
 | `tests/portfolio.spec.ts` | 15 Playwright e2e tests |
 | `.github/workflows/deploy.yml` | CI/CD: test → build → deploy |
+| `.github/workflows/codeql.yml` | CodeQL security scanning (weekly + PR trigger) |
+| `.github/dependabot.yml` | Automated npm dependency updates (weekly) |
 | `DESIGN.md` | Complete design system reference |
 | `astro.config.mjs` | Astro config with Tailwind v4 Vite plugin |
+
+## Repository Security
+
+### Branch Protection (main)
+- **Required status checks**: `test` and `build` must pass before merge
+- **Strict**: Branch must be up to date with main
+- **Linear history**: No merge commits allowed
+- **Force pushes**: Blocked
+- **Deletions**: Blocked
+- **PR review**: Required for non-admin collaborators (1 approval)
+
+### Secret Scanning
+- Enabled (scans all pushes for secrets)
+- Push protection enabled (blocks commits with detected secrets)
+
+### Dependabot
+- Weekly npm dependency updates (grouped by scope: astro, testing)
+- Monthly GitHub Actions updates
+- Security alerts enabled
+
+### Code Scanning
+- CodeQL analysis runs on push to main/development and PRs
+- `security-and-quality` query suite enabled
 
 ## Known Decisions
 
