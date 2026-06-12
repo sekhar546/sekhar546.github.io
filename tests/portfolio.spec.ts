@@ -64,28 +64,11 @@ test.describe("Navigation", () => {
   });
 });
 
-test.describe("Theme Toggle", () => {
-  test("toggles between dark and light mode", async ({ page }) => {
+test.describe("Theme", () => {
+  test("page renders in dark mode by default", async ({ page }) => {
     await page.goto("/");
-    const html = page.locator("html");
-    await expect(html).toHaveClass(/dark/);
-
-    await page.locator("#theme-toggle").click();
-    await expect(html).toHaveClass(/light/);
-
-    await page.locator("#theme-toggle").click();
-    await expect(html).toHaveClass(/dark/);
-  });
-
-  test("persists theme preference in localStorage", async ({ page }) => {
-    await page.goto("/");
-    await page.locator("#theme-toggle").click();
-
-    const theme = await page.evaluate(() => localStorage.getItem("theme"));
-    expect(theme).toBe("light");
-
-    await page.reload();
-    await expect(page.locator("html")).toHaveClass(/light/);
+    await expect(page.locator("html")).toHaveClass(/dark/);
+    await expect(page.locator("#theme-toggle")).toHaveCount(0);
   });
 });
 
