@@ -5,18 +5,18 @@ import { resume } from "../data/resume";
 <section id="projects" class="py-20 bg-surface/30">
   <div class="max-w-5xl mx-auto px-4">
     <div class="text-center mb-12">
-      <p class="text-primary font-heading text-sm tracking-widest uppercase mb-2">Portfolio</p>
-      <h2 class="font-heading text-3xl md:text-4xl font-bold text-heading">Projects & Highlights</h2>
+      <div class="flex items-center gap-3 justify-center mb-3">
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#7700FF,#AA66FF);border-radius:1px;box-shadow:0 0 8px rgba(119,0,255,0.4);"></div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#AA66FF;">// Projects</p>
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#AA66FF,#7700FF);border-radius:1px;box-shadow:0 0 8px rgba(119,0,255,0.4);"></div>
+      </div>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold" style="color:#DDEEFF;">Projects & Highlights</h2>
     </div>
 
     <div class="flex justify-center gap-3 mb-10 flex-wrap">
       {["all", "data", "cloud", "ai"].map((filter) => (
         <button
           class="filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300"
-          class:list={{
-            "bg-primary text-white border-primary": filter === "all",
-            "bg-transparent text-text-muted border-border hover:border-primary/30 hover:text-primary": filter !== "all",
-          }}
           data-filter={filter}
         >
           {filter === "all" ? "All" : filter === "data" ? "Data Engineering" : filter === "cloud" ? "Cloud" : "AI/ML"}
@@ -27,12 +27,14 @@ import { resume } from "../data/resume";
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
       {resume.projects.map((project, i) => (
         <div
-          class="project-card bg-surface-light rounded-xl p-6 border border-border hover:border-primary/20 transition-all duration-300 glow-border flex flex-col"
+          class="project-card bg-surface-light rounded-xl p-6 border border-border transition-all duration-300 flex flex-col"
           data-category={project.category}
-          style={`animation-delay: ${i * 100}ms`}
+          style={`animation-delay: ${i * 100}ms;border-color:rgba(255,255,255,0.06);`}
+          onmouseenter="this.style.borderColor='rgba(170,102,255,0.2)';this.style.boxShadow='0 0 20px rgba(119,0,255,0.06)'"
+          onmouseleave="this.style.borderColor='rgba(255,255,255,0.06)';this.style.boxShadow='none'"
         >
           <div class="mb-3">
-            <span class="px-2.5 py-1 text-[10px] font-medium rounded-full bg-primary/10 text-primary border border-primary/20 uppercase tracking-wider">
+              <span style="padding:3px 10px;font-size:9px;font-weight:600;border-radius:9999px;background:rgba(170,102,255,0.1);color:#AA66FF;border:1px solid rgba(170,102,255,0.2);text-transform:uppercase;letter-spacing:1px;font-family:'JetBrains Mono',monospace;">
               {project.category === "data" ? "Data Engineering" : project.category === "cloud" ? "Cloud" : "AI/ML"}
             </span>
           </div>
@@ -41,7 +43,7 @@ import { resume } from "../data/resume";
           <ul class="space-y-1.5 mb-4">
             {project.highlights.map((h) => (
               <li class="flex gap-2 text-xs text-text-muted">
-                <span class="text-accent mt-0.5 flex-shrink-0">
+                <span class="mt-0.5 flex-shrink-0" style="color:#AA66FF;">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
                 </span>
                 <span>{h}</span>
@@ -60,38 +62,43 @@ import { resume } from "../data/resume";
 </section>
 
 <script>
-  try {
-    const buttons = document.querySelectorAll(".filter-btn");
-    const cards = document.querySelectorAll(".project-card");
+  const buttons = document.querySelectorAll(".filter-btn");
+  const cards = document.querySelectorAll(".project-card");
 
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        buttons.forEach((b) => {
-          b.className = "filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300 bg-transparent text-text-muted border-border hover:border-primary/30 hover:text-primary";
-        });
-        btn.className = "filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300 bg-primary text-white border-primary";
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      buttons.forEach((b) => {
+        b.className = "filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300 bg-transparent border-border";
+        b.style.cssText = "font-family:'JetBrains Mono',monospace;font-size:11px;color:#445566;";
+      });
+      btn.className = "filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300";
+      btn.style.cssText = "font-family:'JetBrains Mono',monospace;font-size:11px;background:#AA66FF;color:#000;border-color:#AA66FF;";
 
-        const filter = btn.getAttribute("data-filter");
-        cards.forEach((card, i) => {
-          const match = filter === "all" || card.getAttribute("data-category") === filter;
-          if (match) {
-            card.style.display = "flex";
-            card.style.opacity = "0";
-            card.style.transform = "translateY(10px)";
-            requestAnimationFrame(() => {
-              card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
-              card.style.opacity = "1";
-              card.style.transform = "translateY(0)";
-            });
-          } else {
-            card.style.opacity = "0";
-            card.style.transform = "translateY(10px)";
-            setTimeout(() => { card.style.display = "none"; }, 200);
-          }
-        });
+      const filter = btn.getAttribute("data-filter");
+      cards.forEach((card, i) => {
+        const match = filter === "all" || card.getAttribute("data-category") === filter;
+        if (match) {
+          card.style.display = "flex";
+          card.style.opacity = "0";
+          card.style.transform = "translateY(10px)";
+          requestAnimationFrame(() => {
+            card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+          });
+        } else {
+          card.style.opacity = "0";
+          card.style.transform = "translateY(10px)";
+          setTimeout(() => { card.style.display = "none"; }, 200);
+        }
       });
     });
-  } catch (e) {
-    console.warn("Project filter init failed:", e);
+  });
+
+  // Apply active style to the initial "all" button on page load
+  const initialBtn = document.querySelector('.filter-btn[data-filter="all"]');
+  if (initialBtn) {
+    initialBtn.className = "filter-btn px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300";
+    initialBtn.style.cssText = "font-family:'JetBrains Mono',monospace;font-size:11px;background:#AA66FF;color:#000;border-color:#AA66FF;";
   }
 </script>

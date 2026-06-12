@@ -26,14 +26,18 @@ const radarData = computeRadarData();
 <section id="skills" class="py-20">
   <div class="max-w-5xl mx-auto px-4">
     <div class="text-center mb-12">
-      <p class="text-primary font-heading text-sm tracking-widest uppercase mb-2">Expertise</p>
-      <h2 class="font-heading text-3xl md:text-4xl font-bold text-heading">Technical Skills</h2>
+      <div class="flex items-center gap-3 justify-center mb-3">
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#AAFF00,#88CC00);border-radius:1px;box-shadow:0 0 8px rgba(170,255,0,0.4);"></div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#AAFF00;">// Skills</p>
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#88CC00,#AAFF00);border-radius:1px;box-shadow:0 0 8px rgba(170,255,0,0.4);"></div>
+      </div>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold" style="color:#DDEEFF;">Technical Skills</h2>
     </div>
 
     <div class="grid md:grid-cols-2 gap-8">
       {Object.entries(resume.skills).map(([groupName, skills]) => (
         <div class="bg-surface-light rounded-xl p-6 border border-border">
-          <h3 class="font-heading font-semibold text-primary mb-5 text-center">{groupName}</h3>
+          <h3 class="font-heading font-semibold mb-5 text-center" style="color:#AAFF00;">{groupName}</h3>
           <div class="space-y-4">
             {skills.map((skill) => (
               <div>
@@ -43,8 +47,8 @@ const radarData = computeRadarData();
                 </div>
                 <div class="h-1.5 rounded-full bg-surface-dark overflow-hidden">
                   <div
-                    class="h-full rounded-full bg-gradient-to-r from-primary to-violet skill-bar"
-                    style={`width: 0%`}
+                    class="h-full rounded-full skill-bar"
+                    style="background:linear-gradient(90deg,#AAFF00,#00F5FF);width:0%;"
                     data-width={skill.level * 20}
                   />
                 </div>
@@ -80,11 +84,11 @@ const radarData = computeRadarData();
         datasets: [{
           label: "Proficiency",
           data,
-          backgroundColor: "rgba(6, 182, 212, 0.1)",
-          borderColor: "#06b6d4",
+          backgroundColor: "rgba(170, 255, 0, 0.08)",
+          borderColor: "#AAFF00",
           borderWidth: 2,
-          pointBackgroundColor: "#06b6d4",
-          pointBorderColor: "#12122a",
+          pointBackgroundColor: "#AAFF00",
+          pointBorderColor: "#03030D",
           pointBorderWidth: 2,
           pointRadius: 4,
         }],
@@ -96,10 +100,10 @@ const radarData = computeRadarData();
           r: {
             beginAtZero: true,
             max: 5,
-            ticks: { stepSize: 1, color: "#64748b", backdropColor: "transparent" },
-            grid: { color: "rgba(148, 163, 184, 0.1)" },
-            angleLines: { color: "rgba(148, 163, 184, 0.1)" },
-            pointLabels: { color: "#94a3b8", font: { family: "'JetBrains Mono', monospace", size: 11 } },
+            ticks: { stepSize: 1, color: "#252540", backdropColor: "transparent" },
+            grid: { color: "rgba(170,255,0,0.07)" },
+            angleLines: { color: "rgba(170,255,0,0.07)" },
+            pointLabels: { color: "#445566", font: { family: "'JetBrains Mono', monospace", size: 11 } },
           },
         },
         plugins: {
