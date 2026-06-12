@@ -23,11 +23,6 @@ import { resume } from "../data/resume";
     </ul>
 
     <div class="flex items-center gap-3">
-      <button id="theme-toggle" class="text-text-muted hover:text-primary transition-colors text-lg p-1" aria-label="Toggle theme">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-        </svg>
-      </button>
       <a
         href={resume.resumeUrl}
         target="_blank"
@@ -51,29 +46,30 @@ import { resume } from "../data/resume";
     </div>
   </nav>
 
-  <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-surface-dark/95 backdrop-blur-lg z-50">
-    <div class="flex justify-end p-4">
-      <button id="mobile-menu-close" class="text-text-muted hover:text-primary transition-colors" aria-label="Close menu">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18" />
-          <line x1="6" y1="6" x2="18" y2="18" />
-        </svg>
-      </button>
-    </div>
-    <ul class="flex flex-col items-center gap-8 mt-12">
-      {["About", "Experience", "Projects", "Skills", "Contact"].map((item) => (
-        <li>
-          <a
-            href={`#${item.toLowerCase()}`}
-            class="text-2xl font-heading text-text-muted hover:text-primary transition-colors"
-          >
-            {item}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
 </header>
+
+<div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-[60]" style="background:#03030D;">
+  <div class="flex justify-end p-4">
+    <button id="mobile-menu-close" class="text-text-muted hover:text-primary transition-colors" aria-label="Close menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+  </div>
+  <ul class="flex flex-col items-center gap-8 mt-12">
+    {["About", "Experience", "Projects", "Skills", "Contact"].map((item) => (
+      <li>
+        <a
+          href={`#${item.toLowerCase()}`}
+          class="text-2xl font-heading text-text-muted hover:text-primary transition-colors"
+        >
+          {item}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
 
 <script>
   try {
@@ -108,14 +104,6 @@ import { resume } from "../data/resume";
     window.addEventListener("scroll", updateActiveLink, { passive: true });
     updateActiveLink();
 
-    const themeSaved = localStorage.getItem("theme");
-    if (themeSaved === "light") document.documentElement.classList.replace("dark", "light");
-
-    document.getElementById("theme-toggle")?.addEventListener("click", () => {
-      const isDark = document.documentElement.classList.contains("dark");
-      document.documentElement.classList.replace(isDark ? "dark" : "light", isDark ? "light" : "dark");
-      localStorage.setItem("theme", isDark ? "light" : "dark");
-    });
   } catch (e) {
     console.warn("Header init failed:", e);
   }
