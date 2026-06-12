@@ -4,8 +4,8 @@ import { resume } from "../data/resume";
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-surface-dark/85 backdrop-blur-md border-b border-border">
   <nav class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-    <a href="#" class="font-heading text-xl font-bold text-heading">
-      {resume.name.split(" ")[0]}<span class="text-primary">.</span>
+    <a href="#" class="font-heading text-xl font-bold" style="color:#DDEEFF;text-decoration:none;">
+      Raja<span style="color:#00F5FF;text-shadow:0 0 10px rgba(0,245,255,0.7);">.</span>
     </a>
 
     <ul class="hidden md:flex items-center gap-8">
@@ -31,7 +31,8 @@ import { resume } from "../data/resume";
       <a
         href={resume.resumeUrl}
         target="_blank"
-        class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-dark transition-colors"
+        class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-colors"
+        style="background:rgba(0,245,255,0.1);color:#00F5FF;border:1px solid rgba(0,245,255,0.25);font-family:'JetBrains Mono',monospace;font-size:11px;"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
