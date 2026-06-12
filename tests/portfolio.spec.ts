@@ -106,7 +106,7 @@ test.describe("Project Filters", () => {
     await page.waitForSelector(".project-card");
     const allCards = page.locator(".project-card");
     const initialCount = await allCards.count();
-    expect(initialCount).toBe(3);
+    expect(initialCount).toBe(4);
 
     await page.locator('.filter-btn[data-filter="ai"]').click();
     await page.waitForTimeout(300);

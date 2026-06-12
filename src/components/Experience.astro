@@ -5,27 +5,31 @@ import { resume } from "../data/resume";
 <section id="experience" class="py-20">
   <div class="max-w-5xl mx-auto px-4">
     <div class="text-center mb-12">
-      <p class="text-primary font-heading text-sm tracking-widest uppercase mb-2">Career</p>
-      <h2 class="font-heading text-3xl md:text-4xl font-bold text-heading">Experience</h2>
+      <div class="flex items-center gap-3 justify-center mb-3">
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#FF0090,#FF4DAA);border-radius:1px;box-shadow:0 0 8px rgba(255,0,144,0.4);"></div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#FF4DAA;">// Experience</p>
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#FF4DAA,#FF0090);border-radius:1px;box-shadow:0 0 8px rgba(255,0,144,0.4);"></div>
+      </div>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold" style="color:#DDEEFF;">Experience</h2>
     </div>
 
     <div class="relative pl-8 md:pl-0">
-      <div class="absolute left-3 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
+      <div class="absolute left-3 md:left-1/2 top-0 bottom-0 w-px md:-translate-x-px" style="background:rgba(255,0,144,0.25);" />
 
       {resume.experience.map((exp, i) => (
         <div class={`relative mb-10 md:flex md:items-start ${i % 2 === 0 ? "" : "md:flex-row-reverse"}`}>
           <div class="hidden md:block md:w-1/2" />
 
-          <div class="absolute left-[-1.35rem] md:left-1/2 md:-translate-x-1/2 top-1 w-3 h-3 rounded-full bg-primary border-2 border-surface-dark z-10" />
+          <div class="absolute left-[-1.35rem] md:left-1/2 md:-translate-x-1/2 top-1 w-3 h-3 rounded-full z-10" style="background:#FF4DAA;border:2px solid #03030D;box-shadow:0 0 8px rgba(255,0,144,0.7);" />
 
           <div class={`md:w-1/2 ${i % 2 === 0 ? "md:pr-10" : "md:pl-10"}`}>
-            <div class="bg-surface-light rounded-xl p-5 border border-border hover:border-primary/20 transition-all glow-border group">
+            <div class="bg-surface-light rounded-xl p-5 border border-border transition-all group" style="border-color:rgba(255,255,255,0.06);" onmouseenter="this.style.borderColor='rgba(255,77,170,0.2)';this.style.boxShadow='0 0 20px rgba(255,0,144,0.05)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.06)';this.style.boxShadow='none'">
               <div class="flex items-start justify-between gap-2 mb-2">
                 <div>
-                  <h3 class="font-heading font-semibold text-heading group-hover:text-primary transition-colors">
+                  <h3 class="font-heading font-semibold transition-colors" style="color:#DDEEFF;">
                     {exp.title}
                   </h3>
-                  <p class="text-primary text-sm font-medium">{exp.company}</p>
+                  <p class="text-sm font-medium" style="color:#FF4DAA;">{exp.company}</p>
                 </div>
               </div>
               <div class="flex items-center gap-2 text-text-dim text-xs mb-3">
@@ -35,7 +39,7 @@ import { resume } from "../data/resume";
               </div>
               <div class="flex flex-wrap gap-1.5 mb-3">
                 {exp.tags.map((tag) => (
-                  <span class="px-2 py-0.5 text-[10px] font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
+                  <span style="padding:2px 8px;font-size:10px;font-weight:500;border-radius:9999px;background:rgba(255,0,144,0.1);color:#FF4DAA;border:1px solid rgba(255,0,144,0.2);font-family:'JetBrains Mono',monospace;">
                     {tag}
                   </span>
                 ))}
@@ -43,7 +47,7 @@ import { resume } from "../data/resume";
               <ul class="space-y-2">
                 {exp.achievements.slice(0, 3).map((a) => (
                   <li class="flex gap-2 text-sm text-text-muted">
-                    <span class="text-primary mt-1 flex-shrink-0">
+                    <span class="mt-1 flex-shrink-0" style="color:#FF4DAA;">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                     </span>
                     <span>{a}</span>
@@ -52,14 +56,14 @@ import { resume } from "../data/resume";
               </ul>
               {exp.achievements.length > 3 && (
                 <details class="mt-2">
-                  <summary class="text-xs text-primary cursor-pointer hover:text-primary-light transition-colors list-none flex items-center gap-1">
+                  <summary style="font-size:11px;color:#FF4DAA;cursor:pointer;list-style:none;display:flex;align-items:center;gap:4px;font-family:'JetBrains Mono',monospace;">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
                     <span class="toggle-label">Show {exp.achievements.length - 3} more</span>
                   </summary>
                   <ul class="space-y-2 mt-2">
                     {exp.achievements.slice(3).map((a) => (
                       <li class="flex gap-2 text-sm text-text-muted">
-                        <span class="text-primary mt-1 flex-shrink-0">
+                        <span class="mt-1 flex-shrink-0" style="color:#FF4DAA;">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         </span>
                         <span>{a}</span>
