@@ -4,8 +4,8 @@ import { resume } from "../data/resume";
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-surface-dark/85 backdrop-blur-md border-b border-border">
   <nav class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-    <a href="#" class="font-heading text-xl font-bold text-heading">
-      {resume.name.split(" ")[0]}<span class="text-primary">.</span>
+    <a href="#" class="font-heading text-xl font-bold" style="color:#DDEEFF;text-decoration:none;">
+      {resume.name.split(" ")[0]}<span style="color:#00F5FF;text-shadow:0 0 10px rgba(0,245,255,0.7);">.</span>
     </a>
 
     <ul class="hidden md:flex items-center gap-8">
@@ -31,7 +31,8 @@ import { resume } from "../data/resume";
       <a
         href={resume.resumeUrl}
         target="_blank"
-        class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-dark transition-colors"
+        class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-colors"
+        style="background:rgba(0,245,255,0.1);color:#00F5FF;border:1px solid rgba(0,245,255,0.25);font-family:'JetBrains Mono',monospace;font-size:11px;"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -75,43 +76,47 @@ import { resume } from "../data/resume";
 </header>
 
 <script>
-  const menuBtn = document.getElementById("mobile-menu-btn");
-  const menuClose = document.getElementById("mobile-menu-close");
-  const mobileMenu = document.getElementById("mobile-menu");
+  try {
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const menuClose = document.getElementById("mobile-menu-close");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-  menuBtn?.addEventListener("click", () => mobileMenu?.classList.remove("hidden"));
-  menuClose?.addEventListener("click", () => mobileMenu?.classList.add("hidden"));
+    menuBtn?.addEventListener("click", () => mobileMenu?.classList.remove("hidden"));
+    menuClose?.addEventListener("click", () => mobileMenu?.classList.add("hidden"));
 
-  mobileMenu?.querySelectorAll("a").forEach((link) =>
-    link.addEventListener("click", () => mobileMenu.classList.add("hidden"))
-  );
+    mobileMenu?.querySelectorAll("a").forEach((link) =>
+      link.addEventListener("click", () => mobileMenu.classList.add("hidden"))
+    );
 
-  const navLinks = document.querySelectorAll(".nav-link");
-  const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+    const sections = document.querySelectorAll("section[id]");
 
-  function updateActiveLink() {
-    const scrollY = window.scrollY + 120;
-    let current = "";
-    sections.forEach((s) => {
-      if (s.offsetTop <= scrollY && s.offsetTop + s.offsetHeight > scrollY) {
-        current = s.id;
-      }
+    function updateActiveLink() {
+      const scrollY = window.scrollY + 120;
+      let current = "";
+      sections.forEach((s) => {
+        if (s.offsetTop <= scrollY && s.offsetTop + s.offsetHeight > scrollY) {
+          current = s.id;
+        }
+      });
+      navLinks.forEach((link) => {
+        link.classList.toggle("text-primary", link.dataset.section === current);
+        link.classList.toggle("text-text-muted", link.dataset.section !== current);
+      });
+    }
+
+    window.addEventListener("scroll", updateActiveLink, { passive: true });
+    updateActiveLink();
+
+    const themeSaved = localStorage.getItem("theme");
+    if (themeSaved === "light") document.documentElement.classList.replace("dark", "light");
+
+    document.getElementById("theme-toggle")?.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      document.documentElement.classList.replace(isDark ? "dark" : "light", isDark ? "light" : "dark");
+      localStorage.setItem("theme", isDark ? "light" : "dark");
     });
-    navLinks.forEach((link) => {
-      link.classList.toggle("text-primary", link.dataset.section === current);
-      link.classList.toggle("text-text-muted", link.dataset.section !== current);
-    });
+  } catch (e) {
+    console.warn("Header init failed:", e);
   }
-
-  window.addEventListener("scroll", updateActiveLink, { passive: true });
-  updateActiveLink();
-
-  const saved = localStorage.getItem("theme");
-  if (saved === "light") document.documentElement.classList.replace("dark", "light");
-
-  document.getElementById("theme-toggle")?.addEventListener("click", () => {
-    const isDark = document.documentElement.classList.contains("dark");
-    document.documentElement.classList.replace(isDark ? "dark" : "light", isDark ? "light" : "dark");
-    localStorage.setItem("theme", isDark ? "light" : "dark");
-  });
 </script>
