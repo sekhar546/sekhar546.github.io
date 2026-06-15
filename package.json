@@ -10,8 +10,8 @@
     "test:ui": "playwright test --ui"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.2.4",
-    "astro": "^6.4.6",
+    "@tailwindcss/vite": "^4.3.1",
+    "astro": "^6.4.7",
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
