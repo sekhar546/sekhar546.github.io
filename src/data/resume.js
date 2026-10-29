@@ -11,8 +11,8 @@ export const resume = {
 
   stats: [
     { label: "Years Experience", value: 14, suffix: "+" },
-    { label: "Monthly Cost Savings", value: "$50K", suffix: "/mo" },
-    { label: "Records Processed", value: "10M", suffix: "+" },
+    { label: "Cloud Cost Savings", value: "$50K", suffix: "/mo" },
+    { label: "Records Processed", value: "20M", suffix: "+" },
     { label: "Projects Delivered", value: 20, suffix: "+" },
   ],
 
@@ -105,6 +105,18 @@ export const resume = {
       tags: ["Snowflake", "dbt", "AWS", "PySpark", "Snowpark"],
     },
     {
+      title: "Enterprise Healthcare Data Platform (Optum / UHG)",
+      category: "data",
+      summary: "9-year multi-role engagement designing and evolving a healthcare reporting platform spanning Medicaid and Medicare programs across 25 US states — platform remains active today.",
+      highlights: [
+        "Integrated data from Facets (claims/enrollment), clinical systems, and pre-authorization workflows into a unified reporting layer.",
+        "Wore multiple hats as Data Analyst, BI Report Developer, and Data Engineer across the full engagement lifecycle.",
+        "Maintained 100% on-time delivery on state reporting cycles, directly avoiding $100K/report penalties.",
+        "Drove platform modernization — introduced Talend ETL and pioneered Power BI self-service analytics within the organisation.",
+      ],
+      tags: ["Talend", "Power BI", "SQL", "Facets", "Healthcare", "ETL"],
+    },
+    {
       title: "AI-Augmented Data Workflows",
       category: "ai",
       summary: "Building hands-on depth in LLM integration and AI-augmented data workflows bridging traditional data infrastructure with modern model-serving.",
@@ -136,5 +148,15 @@ export const resume = {
     ],
   },
 
-  typingTitles: ["Lead Data Engineer", "Data Architect", "AI Engineer"],
+  typingTitles: ["Lead Data Engineer", "Data Architect", "Lakehouse Architect"],
+
+  education: [
+    {
+      degree: "Bachelor of Technology",
+      field: "Computer Science & Engineering",
+      institution: "Jawaharlal Nehru Technological University",
+      location: "Anantapur, India",
+      period: "Jun 2006 — May 2010",
+    },
+  ],
 };

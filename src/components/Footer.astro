@@ -2,7 +2,7 @@
 import { resume } from "../data/resume";
 ---
 
-<footer class="border-t border-border py-8 mt-12">
+<footer class="py-8 mt-12" style="background:#02020A;border-top:1px solid rgba(0,245,255,0.06);">
   <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
     <p class="text-text-dim text-sm">&copy; {new Date().getFullYear()} Raja Sekhar Reddy Gajjala. All rights reserved.</p>
     <div class="flex items-center gap-4">
@@ -20,6 +20,10 @@ import { resume } from "../data/resume";
 </footer>
 
 <script>
-  const saved = localStorage.getItem("theme");
-  if (saved === "light") document.documentElement.classList.replace("dark", "light");
+  try {
+    const saved = localStorage.getItem("theme");
+    if (saved === "light") document.documentElement.classList.replace("dark", "light");
+  } catch (e) {
+    console.warn("Footer theme check failed:", e);
+  }
 </script>

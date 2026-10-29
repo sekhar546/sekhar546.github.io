@@ -1,0 +1,43 @@
+---
+import { resume } from "../data/resume";
+---
+
+<section id="education" class="py-20">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <div class="flex items-center gap-3 justify-center mb-3">
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#00F5FF,#FF0090);border-radius:1px;box-shadow:0 0 8px rgba(0,245,255,0.4);"></div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#00F5FF;">// Education</p>
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#FF0090,#00F5FF);border-radius:1px;box-shadow:0 0 8px rgba(0,245,255,0.4);"></div>
+      </div>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold" style="color:#DDEEFF;">Education</h2>
+    </div>
+
+    <div class="flex justify-center">
+      <div class="flex flex-col gap-4 w-full max-w-xl">
+        {resume.education.map((edu) => (
+          <div class="bg-surface-light rounded-xl p-6 border transition-all" style="border-color:rgba(255,255,255,0.06);" onmouseenter="this.style.borderColor='rgba(0,245,255,0.2)';this.style.boxShadow='0 0 20px rgba(0,245,255,0.05)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.06)';this.style.boxShadow='none'">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center" style="background:rgba(0,245,255,0.08);border:1px solid rgba(0,245,255,0.2);">
+                <svg xmlns="http://www.w3.org/2000/svg" style="width:20px;height:20px;color:#00F5FF;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-heading font-semibold" style="color:#DDEEFF;">{edu.degree}</h3>
+                <p class="text-sm font-medium" style="color:#00F5FF;">{edu.field}</p>
+                <p class="text-text-muted text-sm mt-1">{edu.institution}</p>
+                <div class="flex items-center gap-2 text-text-dim text-xs mt-2">
+                  <span>{edu.location}</span>
+                  <span class="w-1 h-1 rounded-full bg-text-dim" />
+                  <span>{edu.period}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

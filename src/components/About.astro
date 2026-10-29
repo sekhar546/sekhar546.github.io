@@ -5,13 +5,17 @@ import { resume } from "../data/resume";
 <section id="about" class="py-20">
   <div class="max-w-5xl mx-auto px-4">
     <div class="text-center mb-12">
-      <p class="text-primary font-heading text-sm tracking-widest uppercase mb-2">About</p>
-      <h2 class="font-heading text-3xl md:text-4xl font-bold text-heading">Background</h2>
+      <div class="flex items-center gap-3 justify-center mb-3">
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#00F5FF,#FF0090);border-radius:1px;box-shadow:0 0 8px rgba(0,245,255,0.4);"></div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#00F5FF;">// About</p>
+        <div style="width:28px;height:2px;background:linear-gradient(90deg,#FF0090,#00F5FF);border-radius:1px;box-shadow:0 0 8px rgba(0,245,255,0.4);"></div>
+      </div>
+      <h2 class="font-heading text-3xl md:text-4xl font-bold" style="color:#DDEEFF;">Background</h2>
     </div>
 
     <div class="grid md:grid-cols-5 gap-8 items-start">
       <div class="md:col-span-2 flex justify-center">
-        <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-primary/20 glow-border">
+        <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden" style="border:1px solid rgba(0,245,255,0.25);box-shadow:0 0 30px rgba(0,245,255,0.12),0 0 60px rgba(0,245,255,0.05);">
           <img src="/assets/profile.webp" alt={resume.name} width="224" height="224" class="w-full h-full object-cover object-center-top" loading="lazy" />
         </div>
       </div>
@@ -23,13 +27,12 @@ import { resume } from "../data/resume";
 
         <div class="flex flex-wrap gap-4 pt-4">
           {[
-            { label: "Healthcare", icon: "🏥" },
-            { label: "Insurance", icon: "🛡️" },
-            { label: "Banking", icon: "🏦" },
-            { label: "HIPAA Compliant", icon: "🔒" },
+            { label: "Healthcare" },
+            { label: "Insurance" },
+            { label: "Banking" },
+            { label: "HIPAA Compliant" },
           ].map((domain) => (
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
-              <span>{domain.icon}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;background:rgba(0,245,255,0.08);color:#00F5FF;border:1px solid rgba(0,245,255,0.2);">
               {domain.label}
             </span>
           ))}
